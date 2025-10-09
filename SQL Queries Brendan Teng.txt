@@ -1,0 +1,38 @@
+SQL Queries Brendan Teng
+
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetAdminRoleByID`(IN roleId INT)
+BEGIN
+    SELECT id, name, permissions
+    FROM adminroles
+    WHERE id = roleId;
+END
+
+How to use it:
+EXEC GetAdminRoleByID @RoleId = 5;
+
+
+
+
+
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetChannelByName`(IN channelName VARCHAR(100))
+BEGIN
+    SELECT Channel_Id, Market_Id, Channel_Name, Host_Name, IP, Affiliate, Virtual, Call_Sign
+    FROM channels
+    WHERE Channel_Name = channelName;
+END
+How to use it:
+CALL GetChannelByName('KCNC-TV');
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetEmailRequestByID`(IN requestId INT)
+BEGIN
+    SELECT id, organization, name, state
+    FROM Email_Request
+    WHERE id = requestId;
+END
+How to use it:
+CALL GetEmailRequestByID(3);
+
