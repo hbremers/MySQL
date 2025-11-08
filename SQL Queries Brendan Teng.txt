@@ -70,3 +70,14 @@ BEGIN
     ORDER BY state;
 END;
 
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetRecentEmailRequests`(IN limitCount INT)
+BEGIN
+    SELECT id, organization, name, state
+    FROM Email_Request
+    ORDER BY created_at DESC
+    LIMIT limitCount;
+END;
+
+
+
