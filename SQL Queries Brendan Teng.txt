@@ -36,3 +36,37 @@ END
 How to use it:
 CALL GetEmailRequestByID(3);
 
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetEmailRequestsByState`(IN stateName VARCHAR(100))
+BEGIN
+    SELECT id, organization, name, state
+    FROM Email_Request
+    WHERE state = stateName
+    ORDER BY organization ASC;
+END;
+
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetEmailRequestsByOrganization`(IN orgName VARCHAR(255))
+BEGIN
+    SELECT id, organization, name, state
+    FROM Email_Request
+    WHERE organization = orgName;
+END;
+
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `SearchEmailRequestsByName`(IN partialName VARCHAR(100))
+BEGIN
+    SELECT id, organization, name, state
+    FROM Email_Request
+    WHERE name LIKE CONCAT('%', partialName, '%');
+END;
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetAllUniqueStates`()
+BEGIN
+    SELECT DISTINCT state
+    FROM Email_Request
+    ORDER BY state;
+END;
+
