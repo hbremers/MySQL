@@ -13,11 +13,6 @@ How to use it:
 EXEC GetAdminRoleByID @RoleId = 5;
 
 
-
-
-
-
-
 CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetChannelByName`(IN channelName VARCHAR(100))
 BEGIN
     SELECT Channel_Id, Market_Id, Channel_Name, Host_Name, IP, Affiliate, Virtual, Call_Sign
@@ -78,6 +73,7 @@ BEGIN
     ORDER BY created_at DESC
     LIMIT limitCount;
 END;
+
 
 
 
