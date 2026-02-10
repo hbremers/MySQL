@@ -1,4 +1,4 @@
-SQL Queries Brendan Teng
+SQL Queries Brendan Teng Modified for time complexity fixes
 
 
 
@@ -73,6 +73,7 @@ BEGIN
     ORDER BY created_at DESC
     LIMIT limitCount;
 END;
+
 
 
 
