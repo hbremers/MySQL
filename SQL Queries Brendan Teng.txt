@@ -76,5 +76,6 @@ END;
 
 
 
+Newly implemented queries for relevance search
 
 
