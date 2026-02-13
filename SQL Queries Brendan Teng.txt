@@ -80,4 +80,17 @@ END;
 Newly implemented queries for relevance search
 
 
+CREATE DEFINER=`henry_VPN`@`10.8.0.%`
+PROCEDURE `SearchAdminRolesByKeyword`(IN keyword VARCHAR(255))
+BEGIN
+    SELECT 
+        id,
+        name,
+        permissions,
+        MATCH(name, permissions) AGAINST (keyword IN NATURAL LANGUAGE MODE) AS relevance_score
+    FROM adminroles
+    WHERE MATCH(name, permissions) AGAINST (keyword IN NATURAL LANGUAGE MODE)
+    ORDER BY relevance_score DESC;
+END;
+
 
