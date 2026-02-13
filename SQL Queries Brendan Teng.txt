@@ -80,17 +80,51 @@ END;
 Newly implemented queries for relevance search
 
 
+TVTest
+
 CREATE DEFINER=`henry_VPN`@`10.8.0.%`
-PROCEDURE `SearchAdminRolesByKeyword`(IN keyword VARCHAR(255))
+PROCEDURE `SearchTVConfigByKeyword`(IN keyword VARCHAR(255))
 BEGIN
-    SELECT 
-        id,
-        name,
-        permissions,
-        MATCH(name, permissions) AGAINST (keyword IN NATURAL LANGUAGE MODE) AS relevance_score
-    FROM adminroles
-    WHERE MATCH(name, permissions) AGAINST (keyword IN NATURAL LANGUAGE MODE)
+    SELECT
+        HostName,
+        Date_Time,
+        g_version,
+        g_market,
+        g_preset,
+        Station1,
+        Station2,
+        Station3,
+        Station4,
+        MATCH(
+            HostName,
+            g_market,
+            g_confile,
+            g_record_dir,
+            g_arch_dir,
+            g_mount,
+            g_preset,
+            Station1,
+            Station2,
+            Station3,
+            Station4
+        ) AGAINST (keyword IN NATURAL LANGUAGE MODE) AS relevance_score
+    FROM TVConfigNew
+    WHERE MATCH(
+            HostName,
+            g_market,
+            g_confile,
+            g_record_dir,
+            g_arch_dir,
+            g_mount,
+            g_preset,
+            Station1,
+            Station2,
+            Station3,
+            Station4
+        ) AGAINST (keyword IN NATURAL LANGUAGE MODE)
     ORDER BY relevance_score DESC;
 END;
+
+
 
 
