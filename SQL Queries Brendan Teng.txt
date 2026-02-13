@@ -50,12 +50,13 @@ END;
 
 
 
-CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `SearchEmailRequestsByName`(IN partialName VARCHAR(100))
+CREATE PROCEDURE SearchEmailRequestsByName(IN partialName VARCHAR(100))
 BEGIN
     SELECT id, organization, name, state
     FROM Email_Request
-    WHERE name LIKE CONCAT('%', partialName, '%');
-END;
+    WHERE MATCH(name) AGAINST (partialName IN NATURAL LANGUAGE MODE);
+END
+
 
 
 CREATE DEFINER=`henry_VPN`@`10.8.0.%` PROCEDURE `GetAllUniqueStates`()
@@ -77,5 +78,6 @@ END;
 
 
 Newly implemented queries for relevance search
+
 
 
