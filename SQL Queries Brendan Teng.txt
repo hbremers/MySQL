@@ -126,5 +126,47 @@ BEGIN
 END;
 
 
+Channels
+
+ALTER TABLE Channels
+ADD FULLTEXT(
+    Channel_Name,
+    Host_Name,
+    Affiliate,
+    Call_Sign
+);
+
+
+
+CREATE DEFINER=`henry_VPN`@`10.8.0.%`
+PROCEDURE `SearchChannelsByKeyword`(IN keyword VARCHAR(255))
+BEGIN
+    SELECT
+        Channel_Id,
+        Market_Id,
+        Channel_Name,
+        Host_Name,
+        Affiliate,
+        Virtual,
+        Call_Sign,
+        MATCH(
+            Channel_Name,
+            Host_Name,
+            Affiliate,
+            Call_Sign
+        ) AGAINST (keyword IN NATURAL LANGUAGE MODE) AS relevance_score
+    FROM Channels
+    WHERE MATCH(
+            Channel_Name,
+            Host_Name,
+            Affiliate,
+            Call_Sign
+        ) AGAINST (keyword IN NATURAL LANGUAGE MODE)
+    ORDER BY relevance_score DESC;
+END;
+
+
+
+
 
 
