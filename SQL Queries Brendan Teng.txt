@@ -8,7 +8,7 @@ BEGIN
     FROM adminroles
     WHERE id = roleId;
 END
-
+ 
 How to use it:
 EXEC GetAdminRoleByID @RoleId = 5;
 
@@ -164,6 +164,7 @@ BEGIN
         ) AGAINST (keyword IN NATURAL LANGUAGE MODE)
     ORDER BY relevance_score DESC;
 END;
+
 
 
 
