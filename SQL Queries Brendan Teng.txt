@@ -95,7 +95,7 @@ BEGIN
         Station2,
         Station3,
         Station4,
-        MATCH(
+        MATCH( 
             HostName,
             g_market,
             g_confile,
@@ -164,6 +164,7 @@ BEGIN
         ) AGAINST (keyword IN NATURAL LANGUAGE MODE)
     ORDER BY relevance_score DESC;
 END;
+
 
 
 
