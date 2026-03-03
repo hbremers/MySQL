@@ -1,0 +1,3 @@
+This folder contains database updates, maintenance scripts, and documentation related to schema improvements and retention logic for the DigiClips database. 
+It includes SQL scripts for schema changes, stored procedures for automated cleanup of records older than 90 days, and supporting documentation explaining the implementation, verification steps, and reasoning behind the changes. 
+The goal is to improve database performance, ensure efficient retention management, and provide clear documentation for future developers maintaining the system.
